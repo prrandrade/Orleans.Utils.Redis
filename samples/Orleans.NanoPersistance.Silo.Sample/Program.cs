@@ -31,7 +31,15 @@
         {
             var builder = new SiloHostBuilder()
                 
+                // named storage engine
                 .AddRedisGrainStorage("test", options =>
+                {
+                    options.ConfigurationOptions = ConfigurationOptions.Parse("127.0.0.1:6379,allowAdmin=true");
+                    options.KeyPrefix = "orleans.persistance";
+                })
+                
+                // default storage engine, name is not necessry for objects
+                .AddRedisGrainStorageAsDefault(options =>
                 {
                     options.ConfigurationOptions = ConfigurationOptions.Parse("127.0.0.1:6379,allowAdmin=true");
                     options.KeyPrefix = "orleans.persistance";

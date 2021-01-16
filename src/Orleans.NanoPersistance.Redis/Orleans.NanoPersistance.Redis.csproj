@@ -1,14 +1,18 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+    <PackageDescription>Redis storage engine for Microsoft Orleans</PackageDescription>
+    <Authors><![CDATA[Paulo Roberto Ramos de Andrade]]></Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/prrandrade/Orleans.Utils.Redis</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageTags>microsoft orleans;orleans;storage;persistance;redis</PackageTags>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
-
-  <ItemGroup>
-    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
-      <_Parameter1>Orleans.NanoPersistance.Redis.Test</_Parameter1>
-    </AssemblyAttribute>
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="3.4.0" />

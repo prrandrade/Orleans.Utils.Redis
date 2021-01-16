@@ -1,4 +1,7 @@
-﻿namespace Orleans.NanoPersistance.Redis.GrainStorage
+﻿using System.Runtime.CompilerServices;
+
+[assembly: InternalsVisibleTo("Orleans.NanoPersistance.Redis.Test")]
+namespace Orleans.NanoPersistance.Redis.GrainStorage
 {
     using System;
     using System.Globalization;
