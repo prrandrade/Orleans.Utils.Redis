@@ -1,0 +1,79 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3044AB16-37FB-45B5-B31F-346EE2FCCB4D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Orleans.NanoPersistance.Redis", "src\Orleans.NanoPersistance.Redis\Orleans.NanoPersistance.Redis.csproj", "{CA11A6C7-1E59-4CB7-98EA-DAA05A61A972}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{EDD3A293-74D4-45A9-A1A6-89355CA00292}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Persistance", "Persistance", "{76903321-2BD9-4CC2-A656-71CF41FE2B89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orleans.NanoPersistance.Silo.Sample", "samples\Orleans.NanoPersistance.Silo.Sample\Orleans.NanoPersistance.Silo.Sample.csproj", "{D51C73D9-BAE5-4E8C-847A-453E20C9717F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orleans.NanoPersistance.Interfaces.Sample", "samples\Orleans.NanoPersistance.Interfaces.Sample\Orleans.NanoPersistance.Interfaces.Sample.csproj", "{9B32C060-F4D5-4196-852B-D7777E641D07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orleans.NanoPersistance.Grains.Sample", "samples\Orleans.NanoPersistance.Grains.Sample\Orleans.NanoPersistance.Grains.Sample.csproj", "{96202ADD-0AB4-4FB8-9284-A9205E1EB231}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orleans.NanoPersistance.Client.Sample", "samples\Orleans.NanoPersistance.Client.Sample\Orleans.NanoPersistance.Client.Sample.csproj", "{72DD9D0A-49E4-4E8E-A398-2B05539C0E99}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orleans.NanoPersistance.Models.Sample", "samples\Orleans.NanoPersistance.Models.Sample\Orleans.NanoPersistance.Models.Sample.csproj", "{4D430EE9-97A9-4D91-8F5E-4CB73FDF5DFC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{94C9B568-1AB5-4037-9D97-98BAC31A0F72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Orleans.NanoPersistance.Redis.Test", "test\Orleans.NanoPersistance.Redis.Test\Orleans.NanoPersistance.Redis.Test.csproj", "{6A38EFB1-FBFB-4F36-B927-C0861DEC9B74}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CA11A6C7-1E59-4CB7-98EA-DAA05A61A972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA11A6C7-1E59-4CB7-98EA-DAA05A61A972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA11A6C7-1E59-4CB7-98EA-DAA05A61A972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA11A6C7-1E59-4CB7-98EA-DAA05A61A972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D51C73D9-BAE5-4E8C-847A-453E20C9717F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D51C73D9-BAE5-4E8C-847A-453E20C9717F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D51C73D9-BAE5-4E8C-847A-453E20C9717F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D51C73D9-BAE5-4E8C-847A-453E20C9717F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B32C060-F4D5-4196-852B-D7777E641D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B32C060-F4D5-4196-852B-D7777E641D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B32C060-F4D5-4196-852B-D7777E641D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B32C060-F4D5-4196-852B-D7777E641D07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96202ADD-0AB4-4FB8-9284-A9205E1EB231}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96202ADD-0AB4-4FB8-9284-A9205E1EB231}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96202ADD-0AB4-4FB8-9284-A9205E1EB231}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96202ADD-0AB4-4FB8-9284-A9205E1EB231}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72DD9D0A-49E4-4E8E-A398-2B05539C0E99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72DD9D0A-49E4-4E8E-A398-2B05539C0E99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72DD9D0A-49E4-4E8E-A398-2B05539C0E99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72DD9D0A-49E4-4E8E-A398-2B05539C0E99}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D430EE9-97A9-4D91-8F5E-4CB73FDF5DFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D430EE9-97A9-4D91-8F5E-4CB73FDF5DFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D430EE9-97A9-4D91-8F5E-4CB73FDF5DFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D430EE9-97A9-4D91-8F5E-4CB73FDF5DFC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A38EFB1-FBFB-4F36-B927-C0861DEC9B74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A38EFB1-FBFB-4F36-B927-C0861DEC9B74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A38EFB1-FBFB-4F36-B927-C0861DEC9B74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A38EFB1-FBFB-4F36-B927-C0861DEC9B74}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CA11A6C7-1E59-4CB7-98EA-DAA05A61A972} = {3044AB16-37FB-45B5-B31F-346EE2FCCB4D}
+		{76903321-2BD9-4CC2-A656-71CF41FE2B89} = {EDD3A293-74D4-45A9-A1A6-89355CA00292}
+		{D51C73D9-BAE5-4E8C-847A-453E20C9717F} = {76903321-2BD9-4CC2-A656-71CF41FE2B89}
+		{9B32C060-F4D5-4196-852B-D7777E641D07} = {76903321-2BD9-4CC2-A656-71CF41FE2B89}
+		{96202ADD-0AB4-4FB8-9284-A9205E1EB231} = {76903321-2BD9-4CC2-A656-71CF41FE2B89}
+		{72DD9D0A-49E4-4E8E-A398-2B05539C0E99} = {76903321-2BD9-4CC2-A656-71CF41FE2B89}
+		{4D430EE9-97A9-4D91-8F5E-4CB73FDF5DFC} = {76903321-2BD9-4CC2-A656-71CF41FE2B89}
+		{6A38EFB1-FBFB-4F36-B927-C0861DEC9B74} = {94C9B568-1AB5-4037-9D97-98BAC31A0F72}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {829D3F4C-9FC3-4C1A-BD37-481A8DC72D0B}
+	EndGlobalSection
+EndGlobal
