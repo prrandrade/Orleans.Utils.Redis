@@ -8,10 +8,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
     <PackageReference Include="Microsoft.Orleans.OrleansRuntime" Version="3.4.0" />
+    <PackageReference Include="Orleans.NanoPersistance.Redis" Version="2021.1.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Orleans.NanoPersistance.Redis\Orleans.NanoPersistance.Redis.csproj" />
     <ProjectReference Include="..\Orleans.NanoPersistance.Grains.Sample\Orleans.NanoPersistance.Grains.Sample.csproj" />
     <ProjectReference Include="..\Orleans.NanoPersistance.Interfaces.Sample\Orleans.NanoPersistance.Interfaces.Sample.csproj" />
   </ItemGroup>

@@ -29,10 +29,9 @@
                    ((ExampleModel) obj).Property2 == Property2;
         }
     }
-    
     public class StubGranState : IGrainState {
         public object State { get; set; }
-        public Type Type { get; }
+        public Type Type { get; set; }
         public string ETag { get; set; }
         public bool RecordExists { get; set; }
     }
@@ -85,6 +84,29 @@
 
             // assert
             Assert.Equal(_model, _grainState.State);
+        }
+
+        [Fact]
+        public async Task ReadStateAsync_NoPreviousObject()
+        {
+            // arrange
+            const string key = "key";
+            _grainState.State = new ExampleModel();
+
+            _databaseMock
+                .Setup(x => x.StringGetAsync(key, CommandFlags.None))
+                .Returns(Task.FromResult(new RedisValue()));
+
+            // act
+            await _storageService.ReadStateAsync(
+                _databaseMock.Object,
+                _typeResolverMock.Object,
+                _grainState,
+                key);
+
+            // assert
+            Assert.Equal(0, ((ExampleModel)_grainState.State).Property1);
+            Assert.Null(((ExampleModel)_grainState.State).Property2);
         }
 
         [Fact]
