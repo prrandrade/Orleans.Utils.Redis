@@ -8,7 +8,7 @@
 
         public RedisGrainStorageOptionsValidator(RedisGrainStorageOptions configurationOptions, string name)
         {
-            _options = configurationOptions ?? throw new OrleansConfigurationException("Options is required.");
+            _options = configurationOptions ?? throw new OrleansConfigurationException($"{nameof(configurationOptions)} is required.");
         }
 
         public void ValidateConfiguration()
