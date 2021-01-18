@@ -29,22 +29,22 @@
 
         public string GetKeyStringForGrainServiceId()
         {
-            return $"{_options.KeyPrefix}:{_serviceId}";
+            return $"{_options.KeyPrefix}.{_serviceId}";
         }
 
         public string GetKeyStringForGrainReferences(string grainId)
         {
-            return $"{_options.KeyPrefix}:{_serviceId}:{grainId}";
+            return $"{_options.KeyPrefix}.{_serviceId}.{grainId}";
         }
 
         public string GetKeyStringForReminder(string grainId, string reminderName)
         {
-            return $"{_options.KeyPrefix}:{_serviceId}:{grainId}:{reminderName}";
+            return $"{_options.KeyPrefix}.{_serviceId}.{grainId}.{reminderName}";
         }
 
         public string GetKeyStringForHash()
         {
-            return $"{_options.KeyPrefix}:{_serviceId}:versions";
+            return $"{_options.KeyPrefix}.{_serviceId}.grainhash";
         }
 
         public async Task Init()
@@ -66,11 +66,11 @@
                 .Select(x => JsonSerializer.Deserialize<RedisReminderTableData>(x))
                 .Select(y => new ReminderEntry
                 {
-                    Period = y.Period,
+                    GrainRef = _converter.GetGrainFromKeyString(y.GrainId),
+                    Period = TimeSpan.FromMilliseconds(y.Period),
                     ReminderName = y.ReminderName,
                     ETag = y.Version.ToString(),
                     StartAt = y.StartTime,
-                    GrainRef = _converter.GetGrainFromKeyString(y.GrainId)
                 });
 
             return new ReminderTableData(values);
@@ -78,8 +78,8 @@
 
         public async Task<ReminderTableData> ReadRows(uint beginHash, uint endHash)
         {
+            
             var dic = JsonSerializer.Deserialize<Dictionary<string, uint>>(await Database.StringGetAsync(GetKeyStringForHash()));
-
             RedisKey[] keys;
 
             if (beginHash < endHash)
@@ -98,20 +98,22 @@
             }
 
             var values = await Database.StringGetAsync(keys);
-
-            var reminders = values
-                .Select(x => JsonSerializer.Deserialize<RedisReminderTableData>(x))
+            var tableData = values.Select(x => JsonSerializer.Deserialize<RedisReminderTableData>(x)).ToList();
+            var reminders = tableData
                 .Select(y => new ReminderEntry
                 {
-                    Period = y.Period,
+                    Period = TimeSpan.FromMilliseconds(y.Period),
                     ReminderName = y.ReminderName,
                     ETag = y.Version.ToString(),
                     StartAt = y.StartTime,
                     GrainRef = _converter.GetGrainFromKeyString(y.GrainId)
-                });
+                }).ToList();
 
             var reminderTableData = new ReminderTableData(reminders);
-
+            
+            if (reminders.Count > 0)
+                Console.WriteLine("OPA!");
+            
             return reminderTableData;
         }
 
@@ -121,7 +123,7 @@
             var tableData = JsonSerializer.Deserialize<RedisReminderTableData>(await Database.StringGetAsync(key));
             return new ReminderEntry
             {
-                Period = tableData.Period,
+                Period = TimeSpan.FromMilliseconds(tableData.Period),
                 ReminderName = tableData.ReminderName,
                 ETag = tableData.Version.ToString(),
                 StartAt = tableData.StartTime,
@@ -146,7 +148,7 @@
                     GrainId = entry.GrainRef.ToKeyString(),
                     ReminderName = entry.ReminderName,
                     StartTime = entry.StartAt,
-                    Period = entry.Period,
+                    Period = entry.Period.TotalMilliseconds,
                     GrainHash = entry.GrainRef.GetUniformHashCode(),
                     Version = oldData.Version + 1
                 };
@@ -162,16 +164,16 @@
                     GrainId = entry.GrainRef.ToKeyString(),
                     ReminderName = entry.ReminderName,
                     StartTime = entry.StartAt,
-                    Period = entry.Period,
+                    Period = entry.Period.TotalMilliseconds,
                     GrainHash = entry.GrainRef.GetUniformHashCode(),
-                    Version = 1
+                    Version = 0
                 };
                 var stringData = JsonSerializer.Serialize(data);
                 await Database.StringSetAsync(key, stringData);
                 returnData = data.Version.ToString();
             }
 
-            await UpsertIndidivialKeyForHash(key, entry.GrainRef.GetUniformHashCode());
+            await UpsertIndividualKeyForHash(key, entry.GrainRef.GetUniformHashCode());
 
             return returnData;
         }
@@ -216,7 +218,7 @@
 
         // INTERNAL METHODS
 
-        internal async Task UpsertIndidivialKeyForHash(string key, uint grainHash)
+        internal async Task UpsertIndividualKeyForHash(string key, uint grainHash)
         {
             var dic = JsonSerializer.Deserialize<Dictionary<string, uint>>(await Database.StringGetAsync(GetKeyStringForHash()));
             dic[key] = grainHash;

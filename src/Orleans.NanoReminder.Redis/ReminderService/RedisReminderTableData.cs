@@ -12,7 +12,7 @@
         
         public DateTime StartTime { get; set; }
         
-        public TimeSpan Period { get; set; }
+        public double Period { get; set; }
         
         public uint GrainHash { get; set; }
         
